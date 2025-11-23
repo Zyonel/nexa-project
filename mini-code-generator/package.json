@@ -1,0 +1,23 @@
+{
+  "name": "mini-code-generator",
+  "version": "1.0.0",
+  "description": "Admin panel to generate and verify 24-hour login codes",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.9",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "uuid": "^13.0.0"
+  }
+}

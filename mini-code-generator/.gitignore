@@ -1,0 +1,6 @@
+mini-code-generator/node_modules/
+node_modules/
+.env
+dist/
+build/
+*.log
