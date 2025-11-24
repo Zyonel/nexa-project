@@ -181,25 +181,37 @@ a {
 </footer>
 
 <script>
-  /**************************************
-   * Load user info from session storage
-   **************************************/
+document.addEventListener("DOMContentLoaded", () => {
+  // ✅ Load user from sessionStorage
   const user = JSON.parse(sessionStorage.getItem("user"));
   if (!user) {
     alert("Please log in first.");
     window.location.href = "login.html";
+    return;
   }
 
-  document.getElementById("profileName").textContent = user.fullname;
-document.getElementById("profileUsername").textContent = "@" + user.username;
+  const username = user.username;
 
-document.getElementById("infoFullname").textContent = user.fullname;
-document.getElementById("infoEmail").textContent = user.email;
-document.getElementById("infoCountry").textContent = user.country;
+  // ✅ Fetch latest user data from backend
+  fetch(`https://nexa-project-l5pg.onrender.com/api/user/${username}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        const u = data.user;
+        document.getElementById("profileName").textContent = u.fullname;
+        document.getElementById("profileUsername").textContent = "@" + u.username;
+        document.getElementById("infoFullname").textContent = u.fullname;
+        document.getElementById("infoEmail").textContent = u.email;
+        document.getElementById("infoCountry").textContent = u.country;
+      } else {
+        alert("User not found!");
+      }
+    })
+    .catch(err => console.error("Error loading profile:", err));
 
-  /**************************************
-   * Sidebar Toggle
-   **************************************/
+  /*****************************************************
+   * Sidebar toggle
+   *****************************************************/
   const sidebar = document.getElementById("sidebar");
   const toggleBtn = document.getElementById("toggleSidebar");
 
@@ -217,33 +229,82 @@ document.getElementById("infoCountry").textContent = user.country;
     overlay.classList.remove("active");
   });
 
-  /**************************************
+  document.querySelectorAll(".sidebar nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      sidebar.classList.remove("show");
+      overlay.classList.remove("active");
+    });
+  });
+
+  /*****************************************************
    * Logout
-   **************************************/
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.removeItem("user");
+   *****************************************************/
+  const logoutBtn = document.getElementById("logoutBtn");
+  logoutBtn.addEventListener("click", () => {
     sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     window.location.href = "login.html";
   });
 
-  //username shown below human icon
-  document.getElementById("profileUsername").textContent = "@" + user.username;
-document.getElementById("profileName").textContent = user.fullname;
-
-  /**************************************
-   * Withdraw Modal
-   **************************************/
+  /*****************************************************
+   * Withdraw modal logic
+   *****************************************************/
   const withdrawBtns = document.querySelectorAll(".withdraw-btn, .bottomWithdraw");
   const modal = document.getElementById("withdrawModal");
   const closeModal = document.getElementById("closeModal");
+  const withdrawForm = document.getElementById("withdrawForm");
 
   withdrawBtns.forEach(btn => {
-    btn.addEventListener("click", () => modal.style.display = "flex");
+    btn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
   });
 
   closeModal.addEventListener("click", () => {
     modal.style.display = "none";
   });
+
+  if (withdrawForm) {
+    withdrawForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const amount = parseFloat(document.getElementById("withdrawAmount").value);
+      const bankName = document.getElementById("bankName").value.trim();
+      const accountNumber = document.getElementById("accountNumber").value.trim();
+
+      if (amount <= 0) {
+        alert("Enter a valid amount!");
+        return;
+      }
+
+      try {
+        const res = await fetch("https://nexa-project-l5pg.onrender.com/api/withdraw", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: user.username,
+            amount,
+            bank_name: bankName,
+            account_number: accountNumber,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          alert(data.message);
+          modal.style.display = "none";
+        } else {
+          alert("⚠️ " + data.message);
+        }
+      } catch (err) {
+        console.error("Error submitting withdrawal:", err);
+        alert("⚠️ Could not connect to the server.");
+      }
+    });
+  }
+});
 </script>
+
 </body>
 </html>

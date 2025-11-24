@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const email = document.getElementById("email").value.trim();
 
-    const res = await fetch("http://localhost:3000/api/request-reset", {
+    const res = await fetch("https://nexa-project-l5pg.onrender.com/api/request-reset", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),

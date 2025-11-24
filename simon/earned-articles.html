@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", loadArticles);
 
 async function loadArticles() {
   try {
-    const res = await fetch("http://localhost:3000/api/articles");
+    const res = await fetch("https://nexa-project-l5pg.onrender.com/api/articles");
     const data = await res.json();
 
     const container = document.getElementById("articles");
@@ -373,7 +373,8 @@ async function loadArticles() {
       card.className = "article-card";
 
       card.innerHTML = `
-        ${article.image ? `<img src="http://localhost:3000${article.image}" />` : ""}
+        ${article.image ? `<img src="https://nexa-project-l5pg.onrender.com${article.image}" />
+` : ""}
         <div class="title">${article.title}</div>
       `;
 
@@ -440,7 +441,7 @@ function openModal(article) {
   document.getElementById("modalContent").textContent = article.content;
   
   if (article.image) {
-    document.getElementById("modalImage").src = "http://localhost:3000" + article.image;
+    document.getElementById("modalImage").src = "https://nexa-project-l5pg.onrender.com" + article.image;
     document.getElementById("modalImage").style.display = "block";
   } else {
     document.getElementById("modalImage").style.display = "none";

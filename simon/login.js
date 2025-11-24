@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch("https://nexa-project-l5pg.onrender.com/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -38,7 +38,7 @@ if (data.success) {
 }
 
     } catch (err) {
-      console.error("⚠️ Error logging in:", err);
+      console.error("Error logging in:", err);
       alert("Could not connect to the server. Make sure it's running.");
     }
   });

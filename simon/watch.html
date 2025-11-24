@@ -145,7 +145,7 @@
     const container = document.getElementById('videos');
 
     try {
-      const res = await fetch('/api/videos');
+      const res = await fetch('https://nexa-project-l5pg.onrender.com/api/videos');
       const data = await res.json();
       container.innerHTML = '';
 
@@ -204,7 +204,7 @@ playBtn.addEventListener('click', () => {
         // When video ends -> enable claim
         videoEl.addEventListener('ended', () => {
           btn.disabled = false;
-          status.innerText = '✅ You can now claim your reward!';
+          status.innerText = 'You can now claim your reward!';
         });
 
         // 🎯 Claim reward + handle redirect
@@ -220,7 +220,7 @@ playBtn.addEventListener('click', () => {
               if (!newTab) {
                 alert("Please allow popups or click again to open the link.");
                 btn.disabled = false;
-                status.innerText = '⚠️ Popup blocked.';
+                status.innerText = 'Popup blocked.';
                 return;
               }
               delay = 4000; // wait 4 seconds if redirect link exists
@@ -228,7 +228,7 @@ playBtn.addEventListener('click', () => {
 
             setTimeout(async () => {
               status.innerText = '⏳ Crediting reward...';
-              const r = await fetch('/api/videos/claim', {
+              const r = await fetch('https://nexa-project-l5pg.onrender.com/api/videos/claim', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, video_id: v.id })
@@ -236,17 +236,17 @@ playBtn.addEventListener('click', () => {
               const j = await r.json();
 
               if (j.success) {
-                status.innerText = `🎉 Reward Credited: ₦${j.reward}`;
+                status.innerText = `Reward Credited: ₦${j.reward}`;
                 btn.disabled = true;
               } else {
-                status.innerText = j.message || '❌ Error claiming reward.';
+                status.innerText = j.message || 'Error claiming reward.';
                 btn.disabled = false;
               }
             }, delay);
 
           } catch (err) {
             console.error(err);
-            status.innerText = '❌ Error processing reward.';
+            status.innerText = 'Error processing reward.';
             btn.disabled = false;
           }
         });

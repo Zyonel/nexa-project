@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Extract the username from the stored user object
   const username = user.username;
 
-  fetch(`/api/transactions/${username}`)
+  fetch(`https://nexa-project-l5pg.onrender.com/api/transactions/${username}`)
+
     .then(res => res.json())
     .then(data => {
       if (!data.success || !data.transactions.length) {

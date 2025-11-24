@@ -29,7 +29,8 @@ function updateDashboardProfile(newProfileUrl, newUsername) {
 }
 
 // Example usage (fetch from server or local storage)
-fetch('/api/getUserProfile')
+fetch(`https://nexa-project-l5pg.onrender.com/api/getUserProfile?username=${user.username}`)
+
   .then(res => res.json())
   .then(user => {
     updateDashboardProfile(user.profile_pic, user.username);
@@ -41,13 +42,13 @@ fetch('/api/getUserProfile')
    *****************************************************/
   async function loadUserData(username) {
     try {
-      const res = await fetch(`http://localhost:3000/api/user/${username}`);
-      const data = await res.json();
+       const res = await fetch(`https://nexa-project-l5pg.onrender.com/api/user/${username}`);
+       const data = await res.json();
 
       if (data.success) {
         document.getElementById("userName").textContent =
           data.user.fullname || username;
-        console.log("✅ User data:", data.user);
+        console.log("User data:", data.user);
       } else {
         alert("User not found!");
       }
@@ -61,7 +62,7 @@ fetch('/api/getUserProfile')
    *****************************************************/
   async function loadWallet(username) {
     try {
-      const res = await fetch(`http://localhost:3000/api/wallet/${username}`);
+      const res = await fetch(`https://nexa-project-l5pg.onrender.com/api/wallet/${username}`);
       const data = await res.json();
 
       if (data.success) {
@@ -135,12 +136,12 @@ fetch(`/api/transactions/${username}`)
       copyBtn.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(referralLink);
-          alert("✅ Referral link copied!");
+          alert("Referral link copied!");
         } catch (err) {
           // Fallback for browsers not supporting clipboard API
           refInput.select();
           document.execCommand("copy");
-          alert("✅ Referral link copied!");
+          alert("Referral link copied!");
         }
       });
     }
@@ -220,7 +221,7 @@ fetch(`/api/transactions/${username}`)
       }
 
       try {
-        const res = await fetch("http://localhost:3000/api/withdraw", {
+        const res = await fetch("https://nexa-project-l5pg.onrender.com/api/withdraw", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -254,7 +255,7 @@ fetch(`/api/transactions/${username}`)
    *****************************************************/
   async function loadTransactionHistory(username) {
     try {
-      const res = await fetch(`http://localhost:3000/api/transactions/${username}`);
+      const res = await fetch(`https://nexa-project-l5pg.onrender.com/api/transactions/${username}`);
       const data = await res.json();
 
       const table = document.getElementById("transactionTableBody");
@@ -287,7 +288,7 @@ fetch(`/api/transactions/${username}`)
    *****************************************************/
   async function loadWalletLogs(username) {
     try {
-      const res = await fetch(`http://localhost:3000/api/wallet/logs/${username}`);
+      const res = await fetch(`https://nexa-project-l5pg.onrender.com/api/wallet/logs/${username}`);
       const data = await res.json();
 
       const container = document.getElementById("walletLogs");

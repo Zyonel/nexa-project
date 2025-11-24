@@ -53,7 +53,7 @@
     async function loadTasks(){
       const el = document.getElementById('tasks');
       try {
-        const res = await fetch('/api/tasks');
+        const res = await fetch('https://nexa-project-l5pg.onrender.com/api/tasks');
         const j = await res.json();
         if(!j.success || !j.tasks || j.tasks.length === 0){
           el.innerHTML = '<p>No tasks available</p>';
@@ -89,7 +89,7 @@
                 if (!newTab) {
                   alert("Please allow popups or click again to open the link.");
                   btn.disabled = false;
-                  statusEl.textContent = '⚠️ Popup blocked.';
+                  statusEl.textContent = 'Popup blocked.';
                   return;
                 }
               }
@@ -98,7 +98,7 @@
               const delay = 4500;
               setTimeout(async () => {
                 statusEl.textContent = '⏳ Crediting reward...';
-                const r = await fetch('/api/tasks/complete', {
+                const r = await fetch('https://nexa-project-l5pg.onrender.com/api/tasks/complete', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ username, taskId: t.id })

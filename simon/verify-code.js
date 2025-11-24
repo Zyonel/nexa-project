@@ -1,5 +1,5 @@
 /*****************************************************
- * ✅ VERIFY-CODE.JS (FINAL FIXED VERSION)
+ * VERIFY-CODE.JS
  * Features:
  *  - Verify Access Code
  *  - Signup new user
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       /*****************************************************
        * STEP 1: VERIFY ACCESS CODE
        *****************************************************/
-      const verifyRes = await fetch("http://localhost:3000/api/verify", {
+      const verifyRes = await fetch("https://nexa-project-l5pg.onrender.com/api/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code }),
@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const verifyData = await verifyRes.json();
 
       if (!verifyData.valid) {
-        if (verifyData.reason === "expired") return alert("⚠️ Access key expired!");
-        if (verifyData.reason === "already_used") return alert("⚠️ Access key already used!");
+        if (verifyData.reason === "expired") return alert("Access key expired!");
+        if (verifyData.reason === "already_used") return alert("Access key already used!");
         return alert(" Invalid access key!");
       }
 
@@ -75,7 +75,7 @@ user.ref = referralValue.replace(/^https?:\/\/[^/]+\/(register|sign-up)\.html\?r
       /*****************************************************
        * STEP 3: REGISTER USER
        *****************************************************/
-      const signupRes = await fetch("http://localhost:3000/api/signup", {
+      const signupRes = await fetch("https://nexa-project-l5pg.onrender.com/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),
@@ -84,7 +84,7 @@ user.ref = referralValue.replace(/^https?:\/\/[^/]+\/(register|sign-up)\.html\?r
       const signupData = await signupRes.json();
 
       if (signupData.success) {
-        alert("🎉 Signup successful! Redirecting to your dashboard...");
+        alert("Signup successful! Redirecting to your dashboard...");
 
         // ✅ Save new user data locally for personalized dashboard
         const savedUser = {
@@ -103,7 +103,7 @@ window.location.href = "dashboard.html";
         alert(" " + signupData.message);
       }
     } catch (err) {
-      console.error("❌ Error verifying or signing up:", err);
+      console.error("Error verifying or signing up:", err);
       alert(" Could not connect to the server. Make sure the backend is running!");
     }
   });
