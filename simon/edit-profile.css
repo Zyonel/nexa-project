@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0e6ff; /* light purple background */
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 420px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(128, 0, 128, 0.2); /* soft purple shadow */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #5a0ea0; /* deep purple heading */
+}
+
+.profile-pic-area {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic-area img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #b19cd9; /* light purple border */
+}
+
+.pic-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: #7b1fa2; /* purple button */
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pic-btn:hover {
+  background: #9c27b0;
+}
+
+.pic-btn input {
+  display: none;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #4b0082; /* dark purple label */
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #b19cd9;
+  margin-top: 5px;
+}
+
+.save-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #6a1b9a; /* deep purple */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.save-btn:hover {
+  background: #8e24aa;
+}
+
+.back-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  background: #4b0082; /* dark purple */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background: #5a0ea0;
+}

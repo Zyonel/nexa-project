@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="edit-profile.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <h2>Edit Profile</h2>
+
+    <!-- Profile Picture -->
+    <div class="profile-pic-area">
+      <img id="previewPic" src="images/default-avatar.png" alt="Profile Picture">
+      <label class="pic-btn">
+        Change Picture
+        <input type="file" id="profilePic" accept="image/*">
+      </label>
+    </div>
+
+    <form id="editProfileForm">
+
+      <label>Full Name</label>
+      <input type="text" id="fullname">
+
+      <label>Username</label>
+      <input type="text" id="newUsername">
+
+      <label>Email</label>
+      <input type="email" id="email">
+
+      <label>Country</label>
+      <input type="text" id="country">
+
+      <label>Phone Number</label>
+      <input type="text" id="phone">
+
+      <!--<label>New Password (optional)</label>
+      <input type="password" id="password">-->
+
+      <button type="submit" class="save-btn">Save Changes</button>
+
+    </form>
+
+    <button class="back-btn" onclick="window.location.href='profile.html'">Back</button>
+
+  </div>
+
+  <script src="edit-profile.js"></script>
+</body>
+</html>

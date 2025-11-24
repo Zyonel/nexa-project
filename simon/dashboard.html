@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- 🌙 Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" alt="Nexa" width="50">
+        <span>Nexa</span>
+      </div>
+
+      <nav>
+        <a class="nav-link active" data-page="home">🏠 Dashboard</a>
+        <a class="nav-link" data-page="watch.html">🎥 Watch & Earn</a>
+        <a class="nav-link" data-page="task.html">🧾 Daily Tasks</a>
+        <hr style="margin:12px 0;">
+        
+      </nav>
+    </aside>
+
+    <!-- 🌟 Main content -->
+    <main class="content">
+      <header class="topbar">
+        <button id="toggleSidebar" class="menu-btn"><i class="ri-menu-line"></i></button>
+        <div class="user-info">
+          <h3>Welcome, <span id="userName">User</span></h3>
+        </div>
+        <button id="logoutBtn" class="logout">Logout</button>
+      </header>
+
+      <!-- 🔄 Dynamic Page Container -->
+      <div id="main-content">
+        <!-- Default dashboard content (your original dashboard sections) -->
+        <section class="balance-section">
+          <div class="balance-main-card">
+            <div class="balance-header">
+              <h3>Total Balance</h3>
+              <h1><span id="totalBalance">750.00</span></h1>
+            </div>
+            <div class="balance-actions">
+              <button class="btn view-btn">View Details</button>
+              <button class="btn withdraw-btn">Withdraw</button>
+              <button id="refreshBtn" class="btn refresh-btn">Refresh Balance</button>
+            </div>
+          </div>
+
+          <div class="balance-sub-cards">
+            <div class="sub-card">
+              <p>Affiliate Balance</p>
+              <h2><span id="affiliateBalance">0.00</span></h2>
+            </div>
+            <div class="sub-card">
+              <p>Bonus Balance</p>
+              <h2><span id="bonusBalance">0.00</span></h2>
+            </div>
+          </div>
+        </section>
+<!--
+        <section class="transactions-section">
+          <h3 class="section-title">Transaction History</h3>
+          <div class="transaction-filters">
+            <button class="filter-btn active" data-type="all">All</button>
+            <button class="filter-btn" data-type="withdraw_request">Withdrawals</button>
+            <button class="filter-btn" data-type="bonus">Bonuses</button>
+            <button class="filter-btn" data-type="affiliate">Affiliates</button>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="transaction-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Note</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="transactionTableBody">
+                <tr><td colspan="4" class="text-center text-gray-400 py-2">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>-->
+
+                <!-- 📜 Wallet Logs -->
+                 <!--
+        <section class="wallet-logs">
+          <h3 class="section-title">Wallet Activity</h3>
+          <div id="walletLogs" class="wallet-log-list">
+            <p class="text-gray-400 text-sm text-center">Loading...</p>
+          </div>
+        </section>-->
+
+        <!-- 🤝 Referral Section -->
+        <section class="referral">
+          <h3>Your Referral Link</h3>
+          <div class="ref-box">
+            <input type="text" id="refLink" readonly />
+            <button id="copyBtn">Copy</button>
+          </div>
+          <small>Share your link and earn ₦6000 for each referral</small>
+        </section>
+
+        <!-- 🌐 Community -->
+        <section class="community">
+          <h3>Join Our Community</h3>
+          <div class="socials">
+            <a href="https://chat.whatsapp.com/JKTejQvjXrl07iSUFguySh?mode=hqrt2"><i class="ri-whatsapp-fill"></i></a>
+            <a href="#"><i class="ri-telegram-fill"></i></a>
+            <a href="#"><i class="ri-facebook-circle-fill"></i></a>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- 💸 Withdraw Modal -->
+<div id="withdrawModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h3>Withdraw Funds</h3>
+    <form id="withdrawForm">
+      <label>Amount (₦)</label>
+      <input type="number" id="withdrawAmount" required />
+
+      <label>Bank Name</label>
+      <input type="text" id="bankName" required />
+
+      <label>Account Number</label>
+      <input type="text" id="accountNumber" required />
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+  <!-- 🌐 Bottom navigation -->
+  <footer class="bottom-nav">
+    <a href="#" class="active"><i class="ri-home-5-fill"></i><span>Home</span></a>
+    <a href="transaction.html"><i class="ri-time-line"></i><span>Transactions</span></a>
+    <a href="#" id="bottomWithdraw"><i class="ri-wallet-3-line"></i><span>Withdraw</span></a>
+    <a href="profile.html"><i class="ri-user-3-line"></i><span>Profile</span></a>
+  </footer>
+
+<script src="dashboard.js"></script>
+
+<script>
+  // 🧭 Page Navigation
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const page = link.getAttribute('data-page');
+
+      // Remove active class from others
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      // Handle navigation
+      if (page === 'home') {
+        window.location.href = 'dashboard.html';
+      } else if (page === 'watch.html') {
+        window.location.href = 'watch.html';
+      } else if (page === 'task.html') {
+        window.location.href = 'task.html';
+      }
+    });
+  });
+
+  // 🔎 Simple filter functionality for transaction types
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    const type = e.target.dataset.type;
+    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+    e.target.classList.add("active");
+
+    const rows = document.querySelectorAll("#transactionTableBody tr");
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = (type === "all" || text.includes(type.toLowerCase())) ? "" : "none";
+    });
+  });
+</script>
+
+</body>
+</html>

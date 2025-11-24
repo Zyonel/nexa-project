@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nexa - Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Modern Clean CSS Styling -->
+  <style>
+
+     #toggle-password {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+        }
+        
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #4b2cff, #8b5cff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 950px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      display: flex;
+      gap: 30px;
+    }
+
+    .left-section {
+      flex: 2;
+    }
+
+    .logo img {
+      width: 55px;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-control, select {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      transition: border 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: #6c4bff;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(108,75,255,0.15);
+    }
+
+    .btn-primary {
+      background: #6c4bff;
+      color: #fff;
+      padding: 14px;
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .right-section {
+      flex: 1;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .right-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media(max-width: 900px) {
+      .container {
+        flex-direction: column;
+        padding: 25px;
+      }
+
+      .right-section {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="left-section">
+    <div class="logo">
+      <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" alt="logo">
+    </div>
+
+    <h4>Welcome Back</h4>
+
+    <form id="signupForm">
+      <input type="hidden" name="_token" value="es0jlaaMAceqkhHyeujJBd4fQ320y9zr7sWSScWZ">                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Full Name"
+                                value="" name="fullname" autocomplete="off" required>
+                       
+      <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" value=""
+                                name="email" autocomplete="off" required>
+                        </div>
+                        
+    <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username"
+                                value="" name="username" autocomplete="off" required>
+                        </div>
+
+                        <div class="form-group">
+      <select class="form-control" name="country">
+        <option selected>Select Country</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Others">Foreigners</option>
+      </select>
+</div>
+
+     <div class="form-group position-relative">
+                            <input type="password" id="change-type" class="form-control" placeholder="Password"
+                                value="" name="password" autocomplete="off" required>
+                            <span role="button" id="toggle-password"><i
+                                    class="fa fa-eye-slash fs-16 text-dark"></i></span>
+                        </div>
+                        
+                        <input class="form-control" placeholder="Phone" type="tel" value="" name="number" autocomplete="off" required>
+     
+                                                <div class="form-group">
+                            <input type="text" id="otpInput" class="form-control" placeholder="Access Key"
+    value="" name="coupon" autocomplete="off">
+<p class="fs-12">Don't have an Access Key? <a href="merchants.html"
+                                    class="fw-700 text-info">Click here</a></p>
+                        </div>
+                  
+                        <div class="form-group">
+  <input type="text" id="referralInput" class="form-control" placeholder="Referral Username (optional)"
+    name="ref" autocomplete="off">
+  <small class="text-muted fs-12" style="color: white;">If you were referred, this will be filled automatically.</small>
+</div>
+
+      <select class="form-control" name="user_package">
+        <option value="1">NEXA</option>
+      </select>
+
+      <div class="form-group">
+                            <input type="text" class="form-control" value="Enrolled by nexa"
+                                readonly>
+                        </div>
+                    
+                                                <div class="form-group collapse">
+                            <input type="text" class="form-control" name="referral_id" value="ethereal"
+                                readonly>
+                        </div>
+
+                            <div class="form-group">
+                            <div class="checkbox">
+                                <input type="checkbox" id="basic_checkbox_1" required>
+                                <label for="basic_checkbox_1">I agree to the <a href="https://etherealweb.site/signin"
+                                        class="text-warning"><b>Terms</b></a></label>
+                            </div>
+                        </div>
+
+      <button type="submit" class="btn-primary">Sign Up</button>
+    </form>
+
+    <p style="text-align:center; margin-top:10px;">
+      Already have an account? <a href="login.html">Log In</a>
+    </p>
+  </div>
+
+  <div class="right-section">
+    <img src="user/images/pattern.jpg" alt="pattern">
+  </div>
+
+</div>
+
+</body>
+
+ <script>
+        $("#toggle-password").on("click", function(e) {
+            e.preventDefault();
+            const passwordField = $('#change-type');
+            const toggleIcon = $(this).find('i');
+            const isPassword = passwordField.attr('type') === "password";
+
+            passwordField.attr('type', isPassword ? 'text' : 'password');
+            toggleIcon.toggleClass('fa-eye-slash fa-eye');
+        });
+    </script>
+
+    <script src="verify-code.js"></script>
+</html>

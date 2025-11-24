@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    /* Extra styling for the profile page */
+    .profile-card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+      margin-bottom: 20px;
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .profile-header h2 {
+      margin: 10px 0 0;
+    }
+
+    .profile-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .profile-actions .btn {
+      flex: 1;
+    }
+
+    .profile-info {
+  margin-top: 15px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
+
+.info-row .label {
+  font-weight: 600;
+  color: #555;
+}
+
+.info-row .value {
+  color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+  </style>
+</head>
+<body>
+
+<div class="dashboard">
+  <!-- 🌙 Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" alt="Nexa" width="50">
+      <span>Nexa</span>
+    </div>
+
+    <nav>
+        <a class="nav-link active" href="dashboard.html">🏠 Dashboard</a>
+        <a class="nav-link" href="watch.html">🎥 Watch & Earn</a>
+        <a class="nav-link" href="task.html">🧾 Daily Tasks</a>
+      <a class="nav-link active">👤 Profile</a>
+      <hr style="margin:12px 0;">
+    </nav>
+  </aside>
+
+  <!-- 🌟 Main content -->
+  <main class="content">
+    <header class="topbar">
+      <button id="toggleSidebar" class="menu-btn"><i class="ri-menu-line"></i></button>
+      <h3>Profile</h3>
+      <button id="logoutBtn" class="logout">Logout</button>
+    </header>
+
+<section class="profile-card">
+
+  <!-- Header 
+  <div class="profile-header">
+    <i class="ri-user-3-fill" style="font-size:65px;color:#444"></i>
+    <h2 id="profileName">User</h2>
+    <small id="profileUsername">@username</small>
+  </div> -->
+
+  <div class="profile-header">
+  <i class="ri-user-3-fill" style="font-size:65px;color:#444"></i>
+
+  <!-- Username directly under icon -->
+  <h3 id="profileUsername" 
+      style="margin-top:8px; color:#555; font-weight:500;">
+      @username
+  </h3>
+
+  <!-- Full name under username -->
+  <h2 id="profileName" 
+      style="margin-top:-2px; font-size:20px; font-weight:600;">
+      User Fullname
+  </h2>
+</div>
+
+
+  <!-- User info list -->
+  <div class="profile-info">
+    <div class="info-row">
+      <span class="label">Full Name:</span>
+      <span class="value" id="infoFullname">Loading...</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Email:</span>
+      <span class="value" id="infoEmail">Loading...</span>
+    </div>
+
+    <div class="info-row">
+      <span class="label">Country:</span>
+      <span class="value" id="infoCountry">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="profile-actions">
+    <button class="btn" style="background:#444;color:#fff;"><a href="edit-profile.html">Edit Profile</a></button>
+  </div>
+
+</section>
+
+  </main>
+</div>
+
+<!-- 💸 Withdraw Modal (same as dashboard) -->
+<div id="withdrawModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h3>Withdraw Funds</h3>
+    <form id="withdrawForm">
+      <label>Amount (₦)</label>
+      <input type="number" id="withdrawAmount" required />
+
+      <label>Bank Name</label>
+      <input type="text" id="bankName" required />
+
+      <label>Account Number</label>
+      <input type="text" id="accountNumber" required />
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- 🌐 Bottom Nav -->
+<footer class="bottom-nav">
+  <a href="dashboard.html"><i class="ri-home-5-line"></i><span>Home</span></a>
+  <a href="transaction.html"><i class="ri-time-line"></i><span>Transactions</span></a>
+  <a class="bottomWithdraw" id="bottomWithdraw"><i class="ri-wallet-3-line"></i><span>Withdraw</span></a>
+  <a href="#" class="active"><i class="ri-user-3-fill"></i><span>Profile</span></a>
+</footer>
+
+<script>
+  /**************************************
+   * Load user info from session storage
+   **************************************/
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  if (!user) {
+    alert("Please log in first.");
+    window.location.href = "login.html";
+  }
+
+  document.getElementById("profileName").textContent = user.fullname;
+document.getElementById("profileUsername").textContent = "@" + user.username;
+
+document.getElementById("infoFullname").textContent = user.fullname;
+document.getElementById("infoEmail").textContent = user.email;
+document.getElementById("infoCountry").textContent = user.country;
+
+  /**************************************
+   * Sidebar Toggle
+   **************************************/
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.getElementById("toggleSidebar");
+
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  document.body.appendChild(overlay);
+
+  toggleBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("show");
+    overlay.classList.toggle("active");
+  });
+
+  overlay.addEventListener("click", () => {
+    sidebar.classList.remove("show");
+    overlay.classList.remove("active");
+  });
+
+  /**************************************
+   * Logout
+   **************************************/
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
+    window.location.href = "login.html";
+  });
+
+  //username shown below human icon
+  document.getElementById("profileUsername").textContent = "@" + user.username;
+document.getElementById("profileName").textContent = user.fullname;
+
+  /**************************************
+   * Withdraw Modal
+   **************************************/
+  const withdrawBtns = document.querySelectorAll(".withdraw-btn, .bottomWithdraw");
+  const modal = document.getElementById("withdrawModal");
+  const closeModal = document.getElementById("closeModal");
+
+  withdrawBtns.forEach(btn => {
+    btn.addEventListener("click", () => modal.style.display = "flex");
+  });
+
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+</script>
+</body>
+</html>

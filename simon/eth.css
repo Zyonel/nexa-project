@@ -1,0 +1,35 @@
+body {
+  background: linear-gradient(135deg, #2b004a, #0a0014);
+  color: white;
+}
+.mil-logo {
+  width: 80px;           /* Adjust to your preferred size */
+  height: auto;
+  animation: flip 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Keyframes for forward–backward flipping */
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+.hero-gallery {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.hero-gallery img {
+  width: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+

@@ -1,0 +1,97 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #6a0dad; /* Your purple theme */
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.transaction-row {
+  display: grid;
+  grid-template-columns: 180px 140px 120px 1fr;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #f3e8ff; /* light purple bg */
+  align-items: center;
+  font-size: 14px;
+}
+
+.transaction-row.credit {
+  border-left: 4px solid #28a745;
+}
+
+.transaction-row.debit {
+  border-left: 4px solid #dc3545;
+}
+
+.transaction-row span {
+  overflow-wrap: anywhere;
+}
+
+.back-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #6a0dad; /* purple */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.back-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #6c2bd9;   /* your purple theme */
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.back-btn:hover {
+  background: #5822b1;
+}
+
+.back-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #6c2bd9;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+
+  width: auto !important;      /* 🔥 Stops full width */
+  display: inline-block;       /* 🔥 Makes it compact */
+}

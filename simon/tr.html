@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <head>
+    <!-- meta tag -->
+    <meta charset="utf-8">
+    <title>Nexa</title>
+    <meta name="description" content="Nexa">
+
+    
+
+    <!-- responsive tag -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="shortcut icon" href="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png">
+    <!-- Fav Icon -->
+    <link rel="icon" href="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" type="image/x-icon" sizes="any">
+<!----
+    <link rel="stylesheet" href="https://etherealweb.site/plax/fonts/css/switzer.css" type="text/css" media="all">
+    
+    <link rel="stylesheet" href="https://etherealweb.site/plax/css/plugins/bootstrap-grid.css" type="text/css" media="all">
+   
+    <link rel="stylesheet" href="https://etherealweb.site/plax/css/plugins/swiper.min.css" type="text/css" media="all">
+    
+    <link rel="stylesheet" href="https://etherealweb.site/plax/css/plugins/magnific-popup.css" type="text/css" media="all">
+    
+    <link rel="stylesheet" href="https://etherealweb.site/plax/css/style.css" type="text/css" media="all">
+   
+    <link rel="stylesheet" href="https://etherealweb.site/plax/css/custom.css" type="text/css" media="all">
+    
+    <link rel="stylesheet" href="https://etherealweb.site/plax/fonts/css/font-awesome.min.css" type="text/css" media="all">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    -->
+
+    <!-- Local CSS (downloaded) 
+<link rel="stylesheet" href="assets/css/bootstrap-grid.min.css">
+<link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="assets/css/remixicon.css">
+<link rel="stylesheet" href="assets/css/iziToast.min.css">
+-->
+<!--
+<link rel="stylesheet" href="fonts/switzer/switzer.css" type="text/css">
+<link rel="stylesheet" href="switzer.css" type="text/css">
+    -->
+<link rel="stylesheet" href="plugin.css" type="text/css">
+<link rel="stylesheet" href="font.css" type="text/css">
+<link rel="stylesheet" href="swiper.css" type="text/css">
+<link rel="stylesheet" href="magnific.css" type="text/css">
+<link rel="stylesheet" href="plax.css" type="text/css">
+<link rel="stylesheet" href="plax-cus.css" type="text/css">
+<link rel="stylesheet" href="plax-font.css" type="text/css">
+<link rel="stylesheet" href="remixicon.css" type="text/css">
+<link rel="stylesheet" href="remixicon-fonts.css" type="text/css">
+<link rel="stylesheet" href="ajax.css" type="text/css">
+
+<link rel="stylesheet" href="eth.css">
+    <link rel="stylesheet" href="purple-theme.css">
+<!----
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.min.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/fontawesome.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/fontawesome.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/regular.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/regular.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/solid.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/solid.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/svg-with-js.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/svg-with-js.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/v4-font-face.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/v4-font-face.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/v4-shims.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/v4-shims.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/v5-font-face.css" integrity="sha512-NrDWwMu9SwphJRQ8GDNHu4ED/o96oWXXz823kM2EogJbI+8z4fyDwP2558LAaQWUz6p3Bx0Fcrk9Kip6OF95Fw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/v5-font-face.min.css" integrity="sha512-ZBXORHz1NVjWwIdGDZpG5JpNyTGe80IiQPgujngMOI7fSA1mmUlMYVh4R4wYuPJy3qi3+J/fw/kT2RRliRh97w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.js" integrity="sha512-Ddy+sSP/9zhSqalnZk0lzgJ+vWTVjQk5d1CFBkMm/0hSZ9ky+qg8whynw3+TariTA/AX1bb7+l2f93AqRP7BIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" integrity="sha512-xgIrH5DRuEOcZK5cPtVXx/WSp5DTir2JNcKE5ahV2u51NCTD9UDxbQgZHYHVBlPc4H8tug6BZTYIl2RdA/X0Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/brands.js" integrity="sha512-WZYnaVFeHqx45YfLLOjilBr7W/sGlZPQh165Y80lHMPGxXyO17JtFl/06mJg2WMRK/onyccvX0k50lLAA4FTJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/brands.min.js" integrity="sha512-n/BsTkdIQFb53DuQ0Tv2pb9jr7xzVFZkAxdxEfRBs7sbFgfnVOUSnvJiRt9ednWN8yJJL1f+zQVLmDWmlA3MqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/conflict-detection.js" integrity="sha512-lkFSYhStBtAPytZega+msgz6n80u2tKdTHaiaMmdNhKB0ay2wrxKE/EpUYf23K0xqWZ9wejy4ANr5TYbMqXDvw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/conflict-detection.min.js" integrity="sha512-CP4Hcp0iKZrFCPYy6deznqN9LXT9Wv+apRxnfO/xKUEMmDw4JLkKewTa7N1+TYQviVDQoYT5id5/6fSDNiSNnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/fontawesome.js" integrity="sha512-Cay6BapM3XFt+P0+BO8mgcHvx7l2/4XTW2JHMiMw6StLbbBBSS00X+IG8os2dpXAzxOolvnxRuNOrvrAbBO++Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/fontawesome.min.js" integrity="sha512-22flhOyPNWzkYE2LbBCEX+m5tw5RBuw0AKCKURp96YgdoPWNtGrWuViceL0Ey0L/sHZyZXPT53ofUlAI6E+u+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/regular.js" integrity="sha512-KIqZMGq4FMN7jXXf6bo9z6whM/IGBz8OycPPR9iB6GahCBnoJvYw0Mt164Hs/eragOz4rlexSFpQ7egNJLZytQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/regular.min.js" integrity="sha512-v8Y1RPBDhIl6ljVVc2BPskTFu+1ZXHt8OjxjwN+u6iCNe8RODApNYeCycaa9I2+0Q+TC0ArQAc6aDzkMbEHV9A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/solid.js" integrity="sha512-PUXIh4RKclPBVaZbOX9N528Dfht/9naNlVNyvE6/CMzi7cWS4CknYOpXSr0js8T4l9n1dkWsQfBLWBRF8U9wBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/solid.min.js" integrity="sha512-86j9kj2hqje32NDU8p9TjZesB/4i7wIlE/2Lc4+sSfGmyTRbBzBspow38bzWtl1aiCPuNd0npEw+UiTHmyUOxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/v4-shims.js" integrity="sha512-W53vkBVNZckA7bL4c3aBXyK4rPOp9GfxMECBjv7cEHnIowUiYS8dMCl6o/c/Cv+5LY+phWPMMC+z8zLlGts2NQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/v4-shims.min.js" integrity="sha512-TGO/E3LodYZYDRNdj0mWgNo+RhKuAYuwUCCunJ8ABbG6rfcciKKfrMZsLKOG2Qcy9RJoi+OFZ4YHou7iTwjGqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+            </head>
+        -->
+
+        <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexa</title>
+
+  <!-- Switzer Font (local or CDN if available) -->
+  <link rel="stylesheet" href="fonts/css/switzer.css" />
+
+  <!-- Bootstrap Grid -->
+  <link rel="stylesheet" href="css/plugins/bootstrap-grid.css" />
+
+  <!-- Your Plugin Styles (if they exist locally) -->
+  <link rel="stylesheet" href="css/plugins.css" />
+
+  <!-- Your Main Site Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Font Awesome 6 (working CDN – icons will show correctly) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+  <!-- RemixIcon (working CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+</head>
+
+<body>
+    <div id="smooth-wrapper" class="mil-wrapper"
+         style="background-color: radial-gradient(circle at 30% 50%, #3a006b 0%, #0a0016 80%)">
+        <!-- scroll progress -->
+        <div class="mil-progress-track">
+            <div class="mil-progress"></div>
+        </div>
+        <!-- scroll progress end -->
+
+        <!-- back to top -->
+        <div class="progress-wrap active-progress"></div>
+        <div class="mil-top-panel mil-dark-2">
+        <div class="container">
+            <a href="/" class="mil-logo">
+                <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" 
+                alt="Nexa" width="auto" height="55px">
+            </a>
+            <nav class="mil-top-menu">
+                <div class="d-md-none d-flex justify-content-between align-items-center">
+                    <a href="/" class="mil-logo">
+                        <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" alt="Nexa" width="150">
+
+                    </a>
+
+                    <i class="ri-close-line text-white mil-menu-btn"></i>
+                </div>
+                <ul>
+                    <li class="mil-active">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about-us.html">About US</a>
+                    </li>
+
+                    <li class="mil-has-children"><a href="#.">Merchants</a>
+                        <ul>
+                            <li><a href="merchants.html">Local Merchants</a></li>
+                            <li><a href="foreign-merchants.html">Foreign Merchants</a></li>
+                            <li><a href="pass-checker.html">Verify Access Key</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="earned-articles.html"> Earned Articles</a></li>
+                    <li><a href="shared-articles.html"> Shared Articles</a></li>
+                    <li><a href="top-earners.html">Top Article Readers</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li class="mil-has-children">
+                        <a href="#.">Pages</a>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms and Condition</a></li>
+                            <li><a href="contact-us.html">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mil-menu-buttons">
+                <a href="dashboard.html">                    <i style="color: #FFF" class="ri-login-circle-line"></i>                 </a>
+                <div class="mil-menu-btn">
+                    
+                    <i style="color: #FFF" class="ri-menu-2-line"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div id="smooth-content">
+                
+    <!-- banner -->
+<div class="mil-banner mil-dark-1" 
+     style="background: linear-gradient(135deg, #2b004a 0%, #14002c 100%); 
+            background-size: cover; 
+            background-position: center;
+            padding-top: 120px; padding-bottom: 120px;">
+
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-xl-6">
+                <div class="mil-banner-text">
+                    <p class="mil-accent mil-mb-20">Your Influence, Your Nexa Paycheck</p>
+
+                    <h1 class="mil-display mil-light mil-mb-20">
+                        Turn Your Social Energy Into Income
+                    </h1>
+
+                    <p class="mil-light mil-mb-20">
+                        Post daily, grow your influence, and watch your Nexa balance rise.
+                    </p>
+
+                    <div class="mil-buttons-frame">
+                        <a href="sign-up.html" class="mil-btn mil-md mil-add-play">Get Started</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <img src="images/Nexa 1.jpg" 
+                     alt="Nexa Monetization Preview" 
+                     class="mil-banner-image mil-up" 
+                     style="border-radius: 20px; width: 100%; box-shadow: 0 0 40px rgba(130, 0, 255, 0.4);">
+            </div>
+
+        </div>
+    </div>
+</div>
+    <!-- banner end -->
+
+    <!-- icon boxes -->
+    <div class="icon-boxes mil-p-160-130">
+        <div class="container">
+            <div class="mil-text-start">
+                <h6 class="mil-accent">The Code Behind The Vision;</h6>
+                <h2 class="mil-light mil-mb-30 mil-up">What do We Stand For?</h2>
+                <p class="mil-text-l mil-mb-20 mil-up mil-soft">
+                    NEXA WEB transcends the present, Forging & Designing futuristic pathways that connect you with
+                    financial possibilities born from your Passions & Ecstasies.
+                </p>
+                <p class="mil-text-l mil-mb-10 mil-up mil-soft">
+                    We are committed to providing our customers with exceptional service while offering our employees the
+                    best training with different skills.
+                    We ensure that every entrepreneur and user wanting to make a continuous sales of their products, skills
+                    and services will get right varieties of customers and patronages. The promoters of such products and
+                    services through networking and marketing will also get adequate value back for their time spent.</p>
+                <a href="about-us.html" class="mil-accent">Read More</a>
+            </div>
+            <div class="row mil-mt-60">
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-tools-line mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            Modern Craft Skills
+                        </h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">
+                            We offer you advanced 22nd-Century High-income skills that open the doors to a Valuable life
+                            built on meaningful values and rewarding opportunities. Learn, Earn, Get Certified.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-store-3-line mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            NEXA Trade Sector</h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">We have creatively transformed to the biggest
+                            digital marketplace, Our users upload their goods to our website and patronize or get patronized
+                            by thousands of users visiting our website.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-arrow-up-down-line mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            Dual Flow Reward System
+                        </h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">
+                            Earn daily cash Revenue from two directions. From your Superior's Efforts and your team's
+                            Efforts.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-openai-line mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            AI-Powered Blog Writing
+                        </h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">
+                            We allow you to Publish your AI- Written articles on diverse topics to our Website, Where you
+                            are paid for every view and engagement on your article. We also act as a third party and allow
+                            you sell these generated Articles to hiring Companies worldwide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <img src="images/Nexa 4.jpg" class="rounded20 mil-up mil-mb-60" alt="">
+            <div class="row">
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-tiktok-fill mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            Social Media Monetization
+                        </h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">
+                            Every of your Social Action generates you rewards Unlimitedly. Connect your Social media
+                            Accounts such as; WhatsApp, Snapchat and Tiktok with Nexa and Earn unrestrictedly on every
+                            social engagement you receive or give.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-advertisement-fill mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            Social Boost </h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">You can gain brand recognition by just using
+                            an allocated portion of your Activities earnings to purchase organic social followers &
+                            engagements which would be done by Nexa users.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-gamepad-line mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            Games
+                        </h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">
+                            We have integrated a system of inventions in which your already doing activities grant you
+                            rewards immensely, Such as Playing fun known Games like Candy crush on our website. The more you
+                            play, the more you Earn rewards.
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-4 mil-mb-60">
+                    <div class="mil-icon-box">
+                        <i class="ri-planet-line mil-up icon"></i>
+                        <h5 class="mil-up mil-accent">
+                            Instant Data Freebie
+                        </h5>
+                        <p class="mil-text-m mil-soft mil-up mil-text-center">
+                            We have allocated daily revenue pool of data bonuses of different network providers to our newly
+                            registered Users randomly. You receive instant Data bonus automatically via your registered
+                            phone number upon completion of your Enrollment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- icon boxes end -->
+
+    <div class="mil-cta mil-up">
+        <div class="container">
+            <div class="mil-out-frame mil-visible mil-illustration-fix mil-p-160-0">
+                <div class="row align-items-end">
+                    <div class="mil-text-center">
+                        <h2 class="mil-mb-30 mil-up">
+                            We are trusted by thousands of people and Businesses Worldwide.
+                        </h2>
+                        <p class="mil-text-m mil-soft mil-mb-60 mil-up">
+                            The Future is Not Years to Come, The Future Has Begun! A NEW ERA AWAITS YOU ON NEXA</p>
+                    </div>
+                </div>
+                <div class="mil-illustration-absolute mil-up">
+                    <img src="images/Nexa 3.jpg" class="rounded20" alt="illustration">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- features -->
+    <div class="mil-cta mil-up">
+        <div class="container">
+            <div class="mil-p-160-100">
+                <div class="row align-items-end">
+                    <div class="col-xl-8 mil-mb-80-adaptive-30">
+                        <h2 class="mil-up mil-light">
+                            Innovation and Efficiency in Every Transaction</h2>
+                    </div>
+                    <div class="col-xl-4 mil-mb-80 mil-up">
+                        <a href="https://etherealweb.site/signup" class="mil-btn mil-m mil-add-arrow mil-adaptive-right">Join Now!</a>
+                    </div>
+                </div>
+
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-xl-5 mil-mb-80">
+                        <div class="mil-image-frame mil-visible-overflow">
+                            <img src="images/Nexa 2.jpg" alt="image" class="mil-up">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- features end -->
+    <!-- faq -->
+    <div class="mil-faq mil-p-160-130">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="mil-text-center">
+                        <h2 class="mil-accent mil-mb-30 mil-up">Explore Our Frequently <br>Asked Questions</h2>
+                        <p class="mil-text-l mil-mb-60 mil-up mil-soft">Find quick and clear answers to the most
+                            common <br>questions about Nexa</p>
+                    </div>
+
+                    <div class="mil-accordion">
+
+                        <div class="mil-accordion-group mil-up">
+                            <div class="mil-accordion-menu">
+                                <h5 class="mil-light">How Do I Sign Up ?</h5>
+
+                                <div class="mil-accordion-icon mil-dark"><i class="fas fa-chevron-up"></i></div>
+
+                            </div>
+                            <div class="mil-accordion-content">
+                                <p class="mil-text-m mil-soft">You are enrolled on our website to enjoy all our
+                                    creativities and inventions. Connect with us via the following Basic steps;</p>
+                                <ol class="mil-text-m mil-soft">
+                                    <li class="mil-mb-10">- Click on the Sign Up link and Fill in Your Enrollment details
+                                    </li>
+                                    <li class="mil-mb-10">- Message Any of our Listed verified merchants only, Where you
+                                        purchase "Nexa Access Key" to aid the completion of your Enrollment.
+                                    </li>
+                                    <li class="mil-mb-10">- Your Data security is Ensured on Nexa With decentralised
+                                        Actions. You are in Control.
+                                    </li>
+                                    <li class="mil-mb-20">- After Enrollment Completion, Step by step guides on every of
+                                        our features are provided to you on your Nexa Dashboard.
+                                    </li>
+                                    <li><a class="mil-accent" href="merchants.html">Message a Merchant
+                                            here</a></li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="mil-accordion-group mil-up">
+                            <div class="mil-accordion-menu">
+                                <h5 class="mil-light">What is the coverage of the Nexa network?
+                                </h5>
+
+                                <div class="mil-accordion-icon mil-dark"><i class="fas fa-chevron-up" style="translate: none; rotate: 
+                                none; scale: none; transform: rotate(90deg);" >
+                 
+                            </i></div>
+                            </div>
+                            <div class="mil-accordion-content">
+                                <p class="mil-text-m mil-soft">Our creativities and inventions span across the globe and we
+                                    have ensured Worldwide Availability. Every Country, Race and Nation can partake and
+                                    patronize our services and product </p>
+
+                            </div>
+                        </div>
+
+                        <div class="mil-accordion-group mil-up">
+                            <div class="mil-accordion-menu">
+                                <h5 class="mil-light">How Do I Make Money With The NEXA Features</h5>
+
+                                <div class="mil-accordion-icon mil-dark"><i class="fas fa-chevron-up"></i></div>
+                            </div>
+                            <div class="mil-accordion-content">
+                                <p class="mil-text-m mil-soft mil-mb-20">- Our products and Services such as Digital
+                                    Skills,
+                                    Marketplace, and Social Boost can be promoted amongst our users via our marketing
+                                    segment, where they are rewarded withdrawable Revenue Shares.
+                                </p>
+                                <p class="mil-text-m mil-soft">- Our Game, Articles Readings, Ads Engagements and Social
+                                    Monetization features also set your ahead with generation of unlimited revenues from
+                                    your Social Actions.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mil-accordion-group mil-up">
+                            <div class="mil-accordion-menu">
+                                <h5 class="mil-light">How can I contact Nexa customer service?</h5>
+
+                                <div class="mil-accordion-icon mil-dark"><i class="fas fa-chevron-up"></i></div>
+                            </div>
+                            <div class="mil-accordion-content">
+                                <p class="mil-text-m mil-soft mil-mb-20">LOn Nexa, we are always available and here for
+                                    you with
+                                    our 24-7 and Round the clock customer support teams rendering great and unbeatable
+                                    services.
+                                </p>
+                                <ol>
+                                    <li class="mil-mb-10 mil-light">Contact us Via:</li>
+                                    <li class="mil-mb-10"><a class="mil-accent"
+                                            href="mailto:etherealwebsupport@gmail.com">maverickbtc678@gmail.com</a>
+                                    </li>
+                                    <!--<li class="mil-mb-10"><a class="mil-accent"
+                                            href="mailto:etherealwebsupportcc@gmail.com">Etherealwebsupportcc@gmail.com</a>
+                                    </li>-->
+                                    <li class="mil-mb-10"><a class="mil-accent" href="tel:08090006700">0706 781 0119</a>
+                                    </li>
+                                    <li><a class="mil-accent" href="tel:07022008000">0807 232 5207</a></li>
+                                </ol>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- faq end -->
+            <footer class="mil-footer-dark mil-p-160-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mil-mb-60 mil-footer-space-fix">
+                <a href="#." class="mil-footer-logo mil-logo-2 mil-mb-60">
+                    <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" alt="Nexa" width="180">
+                </a>
+                <ul class="mil-footer-list mil-footer-list-2">
+                    <li class="mil-text-m mil-dark-soft mil-mb-15">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="mil-text-m mil-dark-soft mil-mb-15">
+                        <a href="about-us.html">About Us</a>
+                    </li>
+                    <li class="mil-text-m mil-dark-soft mil-mb-15">
+                        <a href="contact-us.html">Contact Us</a>
+                    </li>
+                    <li class="mil-text-m mil-dark-soft mil-mb-15">
+                        <a href="terms.html">Terms</a>
+                    </li>
+                    <li class="mil-text-m mil-dark-soft mil-mb-15">
+                        <a href="privacy.html">Privacy</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-3 mil-mb-60">
+                <p class="text-white">Follow our social media handles </p>
+                <div class="d-flex align-items-center justify-content-around" style="gap: 20px;">
+                    <a href="https://t.me/officialetherealweb" target="_blank">
+                        <i style="font-size:24px; color: #0088CC;" class="ri-telegram-fill"></i>
+                    </a>
+                    <a href="https://www.instagram.com/etherealwebservices?igsh=MTM2NHB2a2pwNXJlcQ%3D%3D&utm_source=qr"
+                        target="_blank">
+                        <i style="font-size:24px; color: #fb005d;" class="ri-instagram-fill"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@etherealweb.site?_t=ZT-8wAmf3jdeKx&_r=1" target="_blank">
+                        <i style="font-size:24px; color: #EE1D52;" class="ri-tiktok-fill"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mil-footer-bottom">
+            <div class="row">
+                <div class="col-xl-6">
+                    <p class="mil-text-s mil-dark-soft">© 2025 Nexa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="1.js"></script>
+<script src="2.js"></script>
+<script src="3.js"></script>
+<script src="4.js"></script>
+<script src="5.js"></script>
+<script src="6.js"></script>
+<script src="7.js"></script>
+<script src="8.js"></script>
+<script src="9.js"></script>
+<script src="10.js"></script>
+
+<!---
+<script src="https://etherealweb.site/plax/js/plugins/jquery.min.js"></script>
+
+<script src="https://etherealweb.site/plax/js/plugins/swiper.min.js"></script>
+
+<script src="https://etherealweb.site/plax/js/plugins/gsap.min.js" class="mil-preloader"></script>
+
+<script src="https://etherealweb.site/plax/js/plugins/ScrollSmoother.min.js"></script>
+
+<script src="https://etherealweb.site/plax/js/plugins/ScrollTrigger.min.js"></script>
+
+<script src="https://etherealweb.site/plax/js/plugins/ScrollTo.min.js"></script>
+
+<script src="https://etherealweb.site/plax/js/plugins/magnific-popup.js"></script>
+
+<script src="https://etherealweb.site/plax/js/main.js"></script>
+
+<link rel="stylesheet" href="https://etherealweb.site/vendor/iziToast/iziToast.min.css">
+<link rel="stylesheet" href="eth.css">
+<script src="https://etherealweb.site/vendor/iziToast/iziToast.min.js"></script>
+-->
+<!--
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/swiper-bundle.min.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollSmoother.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/ScrollToPlugin.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+-->
+<!-- iziToast 
+<link rel="stylesheet" href="assets/css/iziToast.min.css">
+<script src="assets/js/iziToast.min.js"></script>
+-->
+<!-- Your theme script (keep your main.js local) -->
+ <!----
+<script src="main.js"></script>
+-->
+<script>
+    'use strict';
+    function notify(status,message) {
+        iziToast[status]({
+            message: message,
+            position: "bottomRight"
+        });
+    }
+</script>
+        </div>
+    </div>
+</body>
+
+</html>
+
+

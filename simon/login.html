@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nexa</title>
+    <meta name="keywords" content="peer-2-peer, make money online, money, online website, make money online website, marketing, affiliate marketing" />
+    <meta name="description" content="Nexa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <!-- Existing Styles -->
+    <link rel="stylesheet" href="plugin.css" type="text/css">
+    <link rel="stylesheet" href="font.css" type="text/css">
+    <link rel="stylesheet" href="swiper.css" type="text/css">
+    <link rel="stylesheet" href="magnific.css" type="text/css">
+    <link rel="stylesheet" href="plax.css" type="text/css">
+    <link rel="stylesheet" href="plax-cus.css" type="text/css">
+    <link rel="stylesheet" href="plax-font.css" type="text/css">
+    <link rel="stylesheet" href="remixicon.css" type="text/css">
+    <link rel="stylesheet" href="remixicon-fonts.css" type="text/css">
+    <link rel="stylesheet" href="ajax.css" type="text/css">
+    <link rel="stylesheet" href="fonts/css/switzer.css" />
+    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css" />
+    <link rel="stylesheet" href="css/plugins.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Signup Custom CSS -->
+    <link rel="stylesheet" href="signup1.css">
+    <link rel="stylesheet" href="signup2.css">
+    <link rel="stylesheet" href="signup3.css">
+    <link rel="stylesheet" href="signup4.css">
+    <link rel="stylesheet" href="signup5.css">
+    <link rel="stylesheet" href="signup6.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: purple;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Switzer', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* Input Field Redesign */
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #d1c4e9;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: blueviolet;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        #toggle-password {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            color: #6c5ce7;
+        }
+
+        button.btn-primary {
+            background-color: blueviolet;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border-radius: 40px;
+            width: 100%;
+        }
+
+        button.btn-primary:hover {
+            background-color: #7b38d6;
+        }
+
+        h4 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .text-center a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <a href="/" class="logo d-flex justify-content-center mb-3">
+            <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" width="70" alt="logo">
+        </a>
+
+        <h4>Welcome Back</h4>
+
+        <form id="login">
+            <input type="hidden" name="_token" value="bRxSRzXRj6hmzWObmuvCPG3BUMNF231I4hLyUgiK">
+
+            <div class="form-group">
+                <input type="text" class="form-control rounded5" id="username" required
+                    placeholder="Username" name="id" autocomplete="off" autocorrect="off">
+            </div>
+
+            <div class="form-group position-relative">
+                <input type="password" class="form-control rounded5" id="password" required
+                    placeholder="Your Password" name="password" autocomplete="off" autocorrect="off">
+                <span role="button" id="toggle-password"><i
+                        class="fa fa-eye-slash fs-16"></i></span>
+                <div class="text-end">
+                    <a href="forgot.html" class="text-warning fs-12"><i class="ri-key-line"></i> Forgot password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <p class="text-white">Don't have an account? <a href="sign-up.html" class="text-warning">Sign Up</a></p>
+        </div>
+    </section>
+
+    <script src="signup1.js"></script>
+    <script>
+        $("#toggle-password").on("click", function(e) {
+            e.preventDefault();
+            const passwordField = $('#password');
+            const passwordFieldType = passwordField.attr('type');
+            const toggleIcon = $(this).find('i');
+
+            passwordField.attr('type', passwordFieldType === 'password' ? 'text' : 'password');
+            toggleIcon.toggleClass('fa-eye-slash fa-eye');
+        });
+    </script>
+    <script src="signup2.js"></script>
+    <script>
+        'use strict';
+        function notify(status,message) {
+            iziToast[status]({
+                message: message,
+                position: "bottomRight"
+            });
+        }
+    </script>
+    <script src="login.js"></script>
+</body>
+
+</html>

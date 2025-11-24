@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Tasks | Nexa</title>
+  <style>
+    body { font-family: system-ui, Roboto, Arial; background: radial-gradient(circle at 30% 50%, #3a006b 0%, #0a0016 80%); color: #fff; margin:0; padding:20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .task { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); padding: 16px; border-radius: 10px; margin-bottom: 12px; display:flex; justify-content:space-between; align-items:center; gap:12px;}
+    .task h4 { margin:0 0 6px 0; color: #e9dfff; }
+    .task p { margin:0; color: #d9cfff; font-size:14px; }
+    button { background: #6c4ad0; color:#fff; border: none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+    button[disabled] { opacity:0.5; cursor:not-allowed; }
+    .status { font-size:14px; color:#d9cfff; margin-left:12px; }
+  
+  .back-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #6c4ad0;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.back-btn:hover {
+  background: #8060e0;
+}
+
+  </style>
+</head>
+<body>
+  <a href="dashboard.html" class="back-btn">⬅ Back to Dashboard</a>
+
+  <div class="container">
+    <h1>Available Tasks</h1>
+    <div id="tasks">Loading tasks…</div>
+  </div>
+
+  <script>
+    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+    const username = user.username;
+    if (!username) {
+      document.body.innerHTML = '<p style="color:#ffb4ff;">Please log in to view tasks.</p>';
+      throw new Error("User not logged in");
+    }
+
+    async function loadTasks(){
+      const el = document.getElementById('tasks');
+      try {
+        const res = await fetch('/api/tasks');
+        const j = await res.json();
+        if(!j.success || !j.tasks || j.tasks.length === 0){
+          el.innerHTML = '<p>No tasks available</p>';
+          return;
+        }
+        el.innerHTML = '';
+        j.tasks.forEach(t => {
+          const div = document.createElement('div');
+          div.className = 'task';
+          div.innerHTML = `
+            <div>
+              <h4>${t.title}</h4>
+              <p>${t.description || ''}</p>
+              <small>Reward: ₦${Number(t.reward || 0).toFixed(2)}</small>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end">
+              <button data-id="${t.id}" ${t.redirect ? '' : ''}>Do Task</button>
+              <div class="status" id="status-${t.id}"></div>
+            </div>
+          `;
+          el.appendChild(div);
+
+          const btn = div.querySelector('button');
+          const statusEl = div.querySelector('.status');
+
+          btn.addEventListener('click', async () => {
+            btn.disabled = true;
+            statusEl.textContent = '🔗 Opening link...';
+
+            try {
+              if (t.redirect && t.redirect.trim() !== '') {
+                const newTab = window.open(t.redirect, '_blank');
+                if (!newTab) {
+                  alert("Please allow popups or click again to open the link.");
+                  btn.disabled = false;
+                  statusEl.textContent = '⚠️ Popup blocked.';
+                  return;
+                }
+              }
+
+              // wait 4.5s (adjustable)
+              const delay = 4500;
+              setTimeout(async () => {
+                statusEl.textContent = '⏳ Crediting reward...';
+                const r = await fetch('/api/tasks/complete', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ username, taskId: t.id })
+                });
+                const body = await r.json();
+                if (body.success) {
+                  statusEl.textContent = `🎉 +₦${body.reward} credited`;
+                } else {
+                  statusEl.textContent = body.message || '❌ Error';
+                  btn.disabled = false;
+                }
+              }, delay);
+
+            } catch (err) {
+              console.error(err);
+              statusEl.textContent = '❌ Error';
+              btn.disabled = false;
+            }
+          });
+        });
+      } catch (err) {
+        console.error(err);
+        el.innerHTML = '<p>Error loading tasks</p>';
+      }
+    }
+
+    loadTasks();
+  </script>
+</body>
+</html>

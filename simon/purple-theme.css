@@ -1,0 +1,125 @@
+/* MAIN PURPLE PALETTE */
+:root {
+  --purple-main: #6c4ad0;
+  --purple-dark: #4b2ab8;
+  --purple-light: #a67bff;
+  --purple-bg: #1a002c;
+  --purple-glow: #c38bff;
+}
+
+/* Buttons */
+/*.mil-btn,*/
+button,
+a.mil-btn {
+  background: var(--purple-main) !important;
+  border-color: var(--purple-main) !important;
+  color: #fff !important;
+}
+
+.mil-btn:hover {
+  background: var(--purple-dark) !important;
+}
+
+/* Accent text */
+.mil-accent {
+  color: var(--purple-light) !important;
+}
+
+/* Any green borders or highlights */
+.mil-highlight,
+.border-green,
+.green-accent {
+  border-color: var(--purple-main) !important;
+  color: var(--purple-light) !important;
+}
+
+/* Sections with green backgrounds */
+.mil-bg-green,
+.bg-green {
+  background: var(--purple-dark) !important;
+}
+
+/* Links */
+a {
+  color: var(--purple-light) !important;
+}
+a:hover {
+  color: var(--purple-glow) !important;
+}
+
+/* Icons */
+.svg-icon,
+i {
+  color: var(--purple-light) !important;
+}
+
+/* If the theme uses any weird green shadows */
+.shadow-green {
+  box-shadow: 0 0 20px var(--purple-light) !important;
+}
+
+.mil-btn,
+a.mil-btn {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mil-btn,
+a.mil-btn {
+  border: 2px solid #c38bff !important;
+  box-shadow: 0 0 15px #c38bff55 !important;
+}
+
+/* Full purple styling for the scroll-to-top button */
+.progress-wrap {
+    background: #4b2ab8 !important;     /* Deep purple background */
+    border: 2px solid #a67bff !important;
+    box-shadow: 0 0 15px #a67bff55 !important;
+}
+
+/* The arrow inside */
+.progress-wrap::after {
+    border-bottom: 2px solid #ffffff !important;
+    border-right: 2px solid #ffffff !important;
+}
+
+/* Progress ring around the circle */
+.progress-wrap svg.progress-circle path {
+    stroke: #c38bff !important;
+}
+
+.mil-accordion-icon i {
+    transition: 0.3s ease;
+    color: #a67bff !important;
+}
+.mil-accordion-group.active .mil-accordion-icon i {
+    transform: rotate(180deg) !important;
+}
+
+/* Global purple arrow icons */
+.fas.fa-chevron-up,
+.fas.fa-chevron-down,
+.mil-accordion-icon i {
+    color: #a67bff !important;   /* Light purple */
+}
+
+/* Accordion item when open */
+.mil-accordion-group.active .mil-accordion-menu {
+    background: #4b2ab8 !important;   /* Deep purple */
+    border-color: #a67bff !important; /* Light purple border */
+}
+
+/* Optional: change content background too */
+.mil-accordion-group.active .mil-accordion-content {
+    background: #31006b !important;   /* Dark purple */
+}
+
+.mil-accordion .mil-accordion-group .mil-accordion-menu .mil-accordion-icon.mil-active {
+    background-color: var(--purple-main) !important; /* Purple background */
+    border-color: var(--purple-light) !important;
+    box-shadow: 0 0 10px var(--purple-glow) !important;
+}
+
+.mil-accordion-icon.mil-active i {
+    color: #ffffff !important;
+}

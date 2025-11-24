@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexa</title>
+
+  <style>
+    /* 🔹 Reset basic browser styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* 🔹 Background */
+    body {
+      background-color: #6a0dad; /* purple */
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* 🔹 Centered card container */
+    .reset-container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 40px 30px;
+      max-width: 400px;
+      width: 100%;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    /* 🔹 Logo */
+    .logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+
+    /* 🔹 Headings */
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    /* 🔹 Inputs */
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #555;
+    }
+
+    /* 🔹 Submit button */
+    button {
+      width: 100%;
+      padding: 12px 15px;
+      background-color: #fff;
+      color: #6a0dad;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #f3e5ff;
+    }
+
+    /* 🔹 Responsive behavior */
+    @media (max-width: 480px) {
+      .reset-container {
+        padding: 30px 20px;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="reset-container">
+    <!--  Replace the logo src with your actual logo path -->
+    <img src="images/ChatGPT Image Oct 4, 2025, 03_51_38 PM (1).png" width="50" alt="Logo" class="logo" />
+
+    <h2>Reset Your Password</h2>
+
+    <form id="resetForm">
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="code" placeholder="Reset Code" required />
+      <input type="password" id="newPassword" placeholder="New Password" required />
+      <button type="submit">Reset Password</button>
+    </form>
+  </div>
+
+  <script src="reset.js"></script>
+</body>
+</html>
