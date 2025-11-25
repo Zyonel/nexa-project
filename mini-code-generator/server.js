@@ -235,6 +235,26 @@ CREATE TABLE IF NOT EXISTS task_logs (
 );
 `);
 
+// Add referral bonus
+//const reward = 6000;
+
+// Instead of: total_balance = prevTotal + reward
+/*await db.run("UPDATE users SET total_balance = total_balance + ?, affiliate_balance = affiliate_balance + ? WHERE username = ?",
+  [reward, reward, ref]
+);*/
+
+// Insert transaction & wallet log as you already do
+await db.run(
+  "INSERT INTO transactions (username, type, amount, balance_after, note, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+  [ref, "referral_bonus", reward, prevTotal + reward, `Referral bonus from ${username}`, Date.now()]
+);
+
+await db.run(
+  "INSERT INTO wallet_logs (username, amount, type, description, change, reason, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+  [ref, reward, "credit", `Referral bonus for inviting ${username}`, reward, `referral:${username}`, Date.now()]
+);
+
+
 // Database file for articles
 const ARTICLES_DB = "./articles.json";
 expires_at: Date.now() + 24 * 60 * 60 * 1000   // 24 hours
