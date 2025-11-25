@@ -178,7 +178,7 @@
 
         // ✅ FIXED: Load video from correct folder
         playBtn.addEventListener("click", () => {
-          videoEl.src = `https://nexa-project-l5pg.onrender.com/uploads/videos/${v.url}`;
+          videoEl.src = `https://nexa-project-l5pg.onrender.com${v.url}`;
           videoEl.play();
           playBtn.disabled = true;
         });
