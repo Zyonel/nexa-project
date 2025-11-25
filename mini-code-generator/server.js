@@ -38,6 +38,7 @@ function saveJson(filePath, data) {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
