@@ -707,9 +707,6 @@ app.delete("/api/admin/videos/:id", adminAuth, async (req, res) => {
  *****************************************************/
 
 cleanupOldArticles();
-cleanupOldTasks();
-cleanupOldVideos();
-
 
 async function cleanupOldArticles() {
   const articles = JSON.parse(fs.readFileSync(ARTICLES_DB));
