@@ -38,9 +38,7 @@ function saveJson(filePath, data) {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-app.use(cors({
-  origin: "https://nexa-project-mj8u.vercel.app" 
-  }));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
