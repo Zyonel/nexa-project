@@ -17,7 +17,7 @@ body {
 h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #6a0dad; /* Your purple theme */
+  color: #6a0dad;
 }
 
 .transaction-list {
@@ -31,7 +31,7 @@ h2 {
   grid-template-columns: 180px 140px 120px 1fr;
   padding: 10px 15px;
   border-radius: 8px;
-  background: #f3e8ff; /* light purple bg */
+  background: #f3e8ff;
   align-items: center;
   font-size: 14px;
 }
@@ -48,36 +48,7 @@ h2 {
   overflow-wrap: anywhere;
 }
 
-.back-btn {
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px;
-  background: #6a0dad; /* purple */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.back-btn {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  background: #6c2bd9;   /* your purple theme */
-  color: #fff;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  z-index: 1000;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-.back-btn:hover {
-  background: #5822b1;
-}
-
+/* 🔥 Responsive Back Button */
 .back-btn {
   position: fixed;
   top: 15px;
@@ -91,7 +62,53 @@ h2 {
   font-weight: bold;
   z-index: 1000;
   box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  width: auto !important;
+  display: inline-block;
+}
 
-  width: auto !important;      /* 🔥 Stops full width */
-  display: inline-block;       /* 🔥 Makes it compact */
+.back-btn:hover {
+  background: #5822b1;
+}
+
+/* ------------------------------------------------------- */
+/* 🔥 RESPONSIVE MEDIA QUERIES */
+/* ------------------------------------------------------- */
+
+/* 📱 Tablets (≤ 768px) */
+@media (max-width: 768px) {
+  .transaction-row {
+    grid-template-columns: 140px 110px 90px 1fr;
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+/* 📱 Small phones (≤ 550px) */
+@media (max-width: 550px) {
+  .transaction-row {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 6px;
+  }
+
+  .transaction-row span:nth-child(1) {
+    font-weight: bold;
+  }
+}
+
+/* 📱 Extra small phones (≤ 400px) */
+@media (max-width: 400px) {
+  .container {
+    padding: 15px;
+  }
+
+  .transaction-row {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+}
+
+/* 🌀 If the row becomes too wide, allow horizontal scrolling */
+.transaction-row {
+  overflow-x: auto;
+  scrollbar-width: thin;
 }

@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/api/user/${user.username}`, {
+      const res = await fetch(`https://nexa-project-l5pg.onrender.com/api/user/${user.username}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedData),
