@@ -49,6 +49,11 @@ const contacts = [
     name: "Star Chay",
     phone: "2349125514148",
     image: "images/Nexa 14.jpg"
+  },
+               {
+    name: "Debbydayo",
+    phone: "2348126295376",
+    image: "images/Nexa 3.jpg"
   }
 ];
 

@@ -685,6 +685,54 @@ app.delete("/api/admin/videos/:id", adminAuth, async (req, res) => {
  * - deletes local file (if URL starts with /uploads/)
  * Runs every hour (and once immediately at start)
  *****************************************************/
+
+async function cleanupOldArticles() {
+  const articles = JSON.parse(fs.readFileSync(ARTICLES_DB));
+  const now = Date.now();
+  const filtered = articles.filter(a => a.expires_at > now);
+  fs.writeFileSync(ARTICLES_DB, JSON.stringify(filtered, null, 2));
+}
+setInterval(cleanupOldArticles, 60*60*1000); // every hour
+
+
+async function cleanupOldTasks() {
+  try {
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const cutoff = Date.now() - DAY_MS;
+
+    const oldTasks = await db.all("SELECT * FROM tasks WHERE created_at < ?", [cutoff]);
+    if (!oldTasks || oldTasks.length === 0) return;
+
+    for (const t of oldTasks) {
+      // delete from tasks table
+      await db.run("DELETE FROM tasks WHERE id = ?", [t.id]);
+      console.log(`🧹 Deleted expired task id=${t.id} (${t.title})`);
+
+      // also remove from tasks.json if it exists
+      const tasksFile = path.join(__dirname, "data", "tasks.json");
+      if (fs.existsSync(tasksFile)) {
+        try {
+          const data = JSON.parse(fs.readFileSync(tasksFile, "utf8"));
+          const tasksArr = data.tasks || data; // handle array or object
+          const filtered = tasksArr.filter(task => String(task.id) !== String(t.id));
+          fs.writeFileSync(tasksFile, JSON.stringify({ tasks: filtered }, null, 2));
+        } catch (err) {
+          console.warn("Failed to update tasks.json during cleanup:", err);
+        }
+      }
+    }
+  } catch (err) {
+    console.error("Task cleanup error:", err);
+  }
+}
+
+// run once at startup
+cleanupOldTasks();
+
+// schedule hourly
+setInterval(cleanupOldTasks, 60 * 60 * 1000);
+
+
 async function cleanupOldVideos() {
   try {
     const DAY_MS = 24 * 60 * 60 * 1000;
@@ -1043,7 +1091,7 @@ app.post("/api/tasks/complete", async (req, res) => {
     }
 
     // AUTO DELETE TASKS OLDER THAN 24 HOURS
-setInterval(async () => {
+/*setInterval(async () => {
   try {
     const cutoff = Date.now() - (24 * 60 * 60 * 1000);
 
@@ -1052,7 +1100,7 @@ setInterval(async () => {
   } catch (err) {
     console.error("Task cleanup error:", err);
   }
-}, 60 * 60 * 1000); // runs every 1 hour
+}, 60 * 60 * 1000);*/ // runs every 1 hour
 
     // Update user balance
     const reward = Number(task.reward) || 0;
@@ -1118,7 +1166,8 @@ app.post("/api/articles/add", upload.single("image"), (req, res) => {
     content,
     image: imageUrl,
     createdAt: Date.now(),
-    expires_at: Date.now()
+    expires_at: Date.now() + 24*60*60*1000 // expires in 24 hours
+    //expires_at: Date.now()
   };
 
   const articles = JSON.parse(fs.readFileSync(ARTICLES_DB));
