@@ -173,11 +173,13 @@ card.innerHTML = `
 
         const videoEl = card.querySelector('video');
        const playBtn = card.querySelector('button[data-action=play]');
-playBtn.addEventListener('click', () => {
-  videoEl.src = v.url;
+playBtn.addEventListener("click", () => {
+  // If v.url is just a filename, load it from your backend folder
+  videoEl.src = `https://nexa-project-l5pg.onrender.com/videos/${v.url}`;
   videoEl.play();
   playBtn.disabled = true;
 });
+
 
         const btn = card.querySelector('button[data-action=claim]');
         const status = card.querySelector('.status');
