@@ -686,6 +686,11 @@ app.delete("/api/admin/videos/:id", adminAuth, async (req, res) => {
  * Runs every hour (and once immediately at start)
  *****************************************************/
 
+cleanupOldArticles();
+cleanupOldTasks();
+cleanupOldVideos();
+
+
 async function cleanupOldArticles() {
   const articles = JSON.parse(fs.readFileSync(ARTICLES_DB));
   const now = Date.now();
