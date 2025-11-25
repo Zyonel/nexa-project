@@ -155,39 +155,39 @@
       }
 
       data.videos.forEach(v => {
-        console.log("Video:", v);
+        console.log("Video object:", v);
+        console.log("Video URL from backend:", v.url);
 
         const card = document.createElement('div');
         card.className = 'video-card';
-card.innerHTML = `
-  <h3>${v.title || 'Watch'} — ₦${Number(v.reward).toFixed(2)}</h3>
-  <video id="video-${v.id}" playsinline preload="metadata" controls></video>
-  <div class="video-actions">
-    <button data-action="play" data-id="${v.id}">▶️ Watch</button>
-    <button data-action="claim" data-id="${v.id}" disabled>Claim Reward</button>
-    <span class="status" id="status-${v.id}"></span>
-  </div>
-`;
+
+        card.innerHTML = `
+          <h3>${v.title || 'Watch'} — ₦${Number(v.reward).toFixed(2)}</h3>
+          <video id="video-${v.id}" playsinline preload="metadata" controls></video>
+          <div class="video-actions">
+            <button data-action="play" data-id="${v.id}">▶️ Watch</button>
+            <button data-action="claim" data-id="${v.id}" disabled>Claim Reward</button>
+            <span class="status" id="status-${v.id}"></span>
+          </div>
+        `;
 
         container.appendChild(card);
 
         const videoEl = card.querySelector('video');
-       const playBtn = card.querySelector('button[data-action=play]');
-playBtn.addEventListener("click", () => {
-  // If v.url is just a filename, load it from your backend folder
-  videoEl.src = `https://nexa-project-l5pg.onrender.com/videos/${v.url}`;
-  videoEl.play();
-  playBtn.disabled = true;
-});
+        const playBtn = card.querySelector('button[data-action=play]');
 
+        // ✅ FIXED: Load video from correct folder
+        playBtn.addEventListener("click", () => {
+          videoEl.src = `https://nexa-project-l5pg.onrender.com/uploads/videos/${v.url}`;
+          videoEl.play();
+          playBtn.disabled = true;
+        });
 
         const btn = card.querySelector('button[data-action=claim]');
         const status = card.querySelector('.status');
 
-        // Disable right-click
         videoEl.addEventListener('contextmenu', e => e.preventDefault());
 
-        // Prevent skipping
         let lastTime = 0;
         videoEl.addEventListener('timeupdate', () => {
           if (videoEl.currentTime - lastTime > 1) {
@@ -197,19 +197,17 @@ playBtn.addEventListener("click", () => {
           }
         });
 
-        // Pause when user switches tab
         document.addEventListener("visibilitychange", () => {
           if (document.hidden) videoEl.pause();
           else videoEl.play();
         });
 
-        // When video ends -> enable claim
         videoEl.addEventListener('ended', () => {
           btn.disabled = false;
           status.innerText = 'You can now claim your reward!';
         });
 
-        // 🎯 Claim reward + handle redirect
+        // Claim reward logic
         btn.addEventListener('click', async () => {
           btn.disabled = true;
           status.innerText = '🔗 Opening link...';
@@ -225,7 +223,7 @@ playBtn.addEventListener("click", () => {
                 status.innerText = 'Popup blocked.';
                 return;
               }
-              delay = 4000; // wait 4 seconds if redirect link exists
+              delay = 4000;
             }
 
             setTimeout(async () => {
@@ -262,6 +260,7 @@ playBtn.addEventListener("click", () => {
 
   loadVideos();
 </script>
+
 
 </body>
 </html>
