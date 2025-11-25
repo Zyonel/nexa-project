@@ -17,7 +17,7 @@ async function verifyAdminPassword() {
     }
 
     try {
-      const res = await fetch("/api/admin/withdrawals", {
+      const res = await fetch("https://nexa-project-l5pg.onrender.com/api/admin/withdrawals", {
         headers: { "x-admin-pass": ADMIN_PASS },
       });
 
@@ -45,7 +45,7 @@ async function verifyAdminPassword() {
 async function generateCode() {
   try {
     const length = parseInt(document.getElementById("length").value) || 6;
-    const res = await fetch("/api/generate", {
+    const res = await fetch("https://nexa-project-l5pg.onrender.com/api/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ async function generateCode() {
 // Load generated codes
 async function loadCodes() {
   try {
-    const res = await fetch("/api/list", { headers: { "x-admin-pass": ADMIN_PASS } });
+    const res = await fetch("https://nexa-project-l5pg.onrender.com/api/list", { headers: { "x-admin-pass": ADMIN_PASS } });
     const codes = await res.json();
     const container = document.getElementById("codeList");
 
@@ -110,7 +110,7 @@ async function loadCodes() {
 }
 
 async function cleanup() {
-  await fetch("/api/cleanup", {
+  await fetch("https://nexa-project-l5pg.onrender.com/api/cleanup", {
     method: "DELETE",
     headers: { "x-admin-pass": ADMIN_PASS },
   });
@@ -184,7 +184,7 @@ async function updateWithdrawal(id, status) {
   if (!confirm(`Are you sure you want to mark request #${id} as ${status}?`)) return;
 
   try {
-    const res = await fetch("/api/admin/withdrawals/update", {
+    const res = await fetch("https://nexa-project-l5pg.onrender.com/api/admin/withdrawals/update", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -307,7 +307,7 @@ document.getElementById("uploadForm")?.addEventListener("submit", async (e) => {
   formData.append("redirect", redirect);   // ✅ FIX ADDED
   formData.append("video", file);
 
-  const res = await fetch("/api/admin/videos", {
+  const res = await fetch("https://nexa-project-l5pg.onrender.com/api/admin/videos", {
     method: "POST",
     headers: { "x-admin-pass": ADMIN_PASS },
     body: formData,
@@ -334,7 +334,7 @@ document.getElementById("addTaskBtn")?.addEventListener("click", async (e) => {
     return alert("Please provide title and reward");
   }
 
-  const res = await fetch("/api/admin/tasks", {
+  const res = await fetch("https://nexa-project-l5pg.onrender.com/api/admin/tasks", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -371,7 +371,7 @@ document.getElementById("articleForm").addEventListener("submit", async (e) => {
     formData.append("image", image);
   }
 
-  const res = await fetch("http://localhost:3000/api/articles/add", {
+  const res = await fetch("https://nexa-project-l5pg.onrender.com/api/articles/add", {
     method: "POST",
     body: formData,
   });
