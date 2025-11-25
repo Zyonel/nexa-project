@@ -29,8 +29,7 @@ function updateDashboardProfile(newProfileUrl, newUsername) {
 }
 
 // Example usage (fetch from server or local storage)
-fetch(`https://nexa-project-l5pg.onrender.com/api/getUserProfile?username=${user.username}`)
-
+fetch(`https://nexa-project-l5pg.onrender.com/api/user/${user.username}`)
   .then(res => res.json())
   .then(user => {
     updateDashboardProfile(user.profile_pic, user.username);
