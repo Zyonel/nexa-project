@@ -100,9 +100,10 @@ fetch(`https://nexa-project-l5pg.onrender.com/api/user/${user.username}`)
     });
   }
 
-  const username = sessionStorage.getItem("username");
+  const username = user.username;
 
-fetch(`/api/transactions/${username}`)
+fetch(`https://nexa-project-l5pg.onrender.com/api/transactions/${username}`)
+
   .then(res => res.json())
   .then(data => {
     if (data.success) {
@@ -152,7 +153,7 @@ fetch(`/api/transactions/${username}`)
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
       window.location.href = "login.html";
     });
   }
