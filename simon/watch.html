@@ -133,134 +133,145 @@
   </div>
 
 <script>
-  const user = JSON.parse(sessionStorage.getItem('user') || '{}');
-  const username = user.username;
+const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+const username = user.username;
 
-  if (!username) {
-    document.body.innerHTML = '<p style="color:red;text-align:center;">Please log in to view videos.</p>';
-    throw new Error("User not logged in");
-  }
+if (!username) {
+  document.body.innerHTML = '<p style="color:red;text-align:center;">Please log in to view videos.</p>';
+  throw new Error("User not logged in");
+}
 
-  async function loadVideos() {
-    const container = document.getElementById('videos');
+// Function to update wallet balances in real-time
+async function updateWallet() {
+  try {
+    const res = await fetch(`https://nexa-project-l5pg.onrender.com/api/wallet/${username}`);
+    const data = await res.json();
+    if (data.success) {
+      // Update wallet display if elements exist on this page
+      const totalEl = document.getElementById("totalBalance");
+      const bonusEl = document.getElementById("bonusBalance");
+      const affiliateEl = document.getElementById("affiliateBalance");
 
-    try {
-      const res = await fetch('https://nexa-project-l5pg.onrender.com/api/videos');
-      const data = await res.json();
-      container.innerHTML = '';
-
-      if (!data.videos || data.videos.length === 0) {
-        container.innerHTML = '<p style="text-align:center;color:#777;">No videos available yet.</p>';
-        return;
-      }
-
-      data.videos.forEach(v => {
-        console.log("Video object:", v);
-        console.log("Video URL from backend:", v.url);
-
-        const card = document.createElement('div');
-        card.className = 'video-card';
-
-        card.innerHTML = `
-          <h3>${v.title || 'Watch'} — ₦${Number(v.reward).toFixed(2)}</h3>
-          <video id="video-${v.id}" playsinline preload="metadata" controls></video>
-          <div class="video-actions">
-            <button data-action="play" data-id="${v.id}">▶️ Watch</button>
-            <button data-action="claim" data-id="${v.id}" disabled>Claim Reward</button>
-            <span class="status" id="status-${v.id}"></span>
-          </div>
-        `;
-
-        container.appendChild(card);
-
-        const videoEl = card.querySelector('video');
-        const playBtn = card.querySelector('button[data-action=play]');
-
-        // ✅ FIXED: Load video from correct folder
-        playBtn.addEventListener("click", () => {
-          videoEl.src = `https://nexa-project-l5pg.onrender.com${v.url}`;
-          videoEl.play();
-          playBtn.disabled = true;
-        });
-
-        const btn = card.querySelector('button[data-action=claim]');
-        const status = card.querySelector('.status');
-
-        videoEl.addEventListener('contextmenu', e => e.preventDefault());
-
-        let lastTime = 0;
-        videoEl.addEventListener('timeupdate', () => {
-          if (videoEl.currentTime - lastTime > 1) {
-            videoEl.currentTime = lastTime;
-          } else {
-            lastTime = videoEl.currentTime;
-          }
-        });
-
-        document.addEventListener("visibilitychange", () => {
-          if (document.hidden) videoEl.pause();
-          else videoEl.play();
-        });
-
-        videoEl.addEventListener('ended', () => {
-          btn.disabled = false;
-          status.innerText = 'You can now claim your reward!';
-        });
-
-        // Claim reward logic
-        btn.addEventListener('click', async () => {
-          btn.disabled = true;
-          status.innerText = '🔗 Opening link...';
-
-          try {
-            let delay = 0;
-
-            if (v.redirect && v.redirect.trim() !== '') {
-              const newTab = window.open(v.redirect, '_blank');
-              if (!newTab) {
-                alert("Please allow popups or click again to open the link.");
-                btn.disabled = false;
-                status.innerText = 'Popup blocked.';
-                return;
-              }
-              delay = 4000;
-            }
-
-            setTimeout(async () => {
-              status.innerText = '⏳ Crediting reward...';
-              const r = await fetch('https://nexa-project-l5pg.onrender.com/api/videos/claim', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, video_id: v.id })
-              });
-              const j = await r.json();
-
-              if (j.success) {
-                status.innerText = `Reward Credited: ₦${j.reward}`;
-                btn.disabled = true;
-              } else {
-                status.innerText = j.message || 'Error claiming reward.';
-                btn.disabled = false;
-              }
-            }, delay);
-
-          } catch (err) {
-            console.error(err);
-            status.innerText = 'Error processing reward.';
-            btn.disabled = false;
-          }
-        });
-      });
-    } catch (err) {
-      console.error('Failed to load videos', err);
-      container.innerHTML =
-        '<p style="text-align:center;color:red;">Error loading videos.</p>';
+      if(totalEl) totalEl.textContent = `₦${Number(data.wallet.total_balance).toFixed(2)}`;
+      if(bonusEl) bonusEl.textContent = `₦${Number(data.wallet.bonus_balance).toFixed(2)}`;
+      if(affiliateEl) affiliateEl.textContent = `₦${Number(data.wallet.affiliate_balance).toFixed(2)}`;
     }
+  } catch (err) {
+    console.error("Error updating wallet:", err);
   }
+}
 
-  loadVideos();
+async function loadVideos() {
+  const container = document.getElementById('videos');
+  try {
+    const res = await fetch('https://nexa-project-l5pg.onrender.com/api/videos');
+    const data = await res.json();
+    container.innerHTML = '';
+
+    if (!data.videos || data.videos.length === 0) {
+      container.innerHTML = '<p style="text-align:center;color:#777;">No videos available yet.</p>';
+      return;
+    }
+
+    data.videos.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+
+      card.innerHTML = `
+        <h3>${v.title || 'Watch'} — ₦${Number(v.reward).toFixed(2)}</h3>
+        <video id="video-${v.id}" playsinline preload="metadata" controls></video>
+        <div class="video-actions">
+          <button data-action="play" data-id="${v.id}">▶️ Watch</button>
+          <button data-action="claim" data-id="${v.id}" disabled>Claim Reward</button>
+          <span class="status" id="status-${v.id}"></span>
+        </div>
+      `;
+
+      container.appendChild(card);
+
+      const videoEl = card.querySelector('video');
+      const playBtn = card.querySelector('button[data-action=play]');
+      const claimBtn = card.querySelector('button[data-action=claim]');
+      const status = card.querySelector('.status');
+
+      // Play video
+      playBtn.addEventListener('click', () => {
+        videoEl.src = `https://nexa-project-l5pg.onrender.com${v.url}`;
+        videoEl.play();
+        playBtn.disabled = true;
+      });
+
+      // Prevent skipping
+      let lastTime = 0;
+      videoEl.addEventListener('timeupdate', () => {
+        if (videoEl.currentTime - lastTime > 1) videoEl.currentTime = lastTime;
+        else lastTime = videoEl.currentTime;
+      });
+
+      videoEl.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) videoEl.pause(); else videoEl.play();
+      });
+
+      // Enable claim after video ends
+      videoEl.addEventListener('ended', () => {
+        claimBtn.disabled = false;
+        status.innerText = 'You can now claim your reward!';
+      });
+
+      // Claim reward
+      claimBtn.addEventListener('click', async () => {
+        claimBtn.disabled = true;
+        status.innerText = '🔗 Opening link...';
+
+        try {
+          let delay = 0;
+          if (v.redirect && v.redirect.trim() !== '') {
+            const newTab = window.open(v.redirect, '_blank');
+            if (!newTab) {
+              alert("Please allow popups or click again to open the link.");
+              claimBtn.disabled = false;
+              status.innerText = 'Popup blocked.';
+              return;
+            }
+            delay = 4000;
+          }
+
+          setTimeout(async () => {
+            status.innerText = '⏳ Crediting reward...';
+            const r = await fetch('https://nexa-project-l5pg.onrender.com/api/videos/claim', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ username, video_id: v.id })
+            });
+            const j = await r.json();
+
+            if (j.success) {
+              status.innerText = `Reward Credited: ₦${j.reward}`;
+              claimBtn.disabled = true;
+
+              // Immediately update wallet balances
+              updateWallet();
+            } else {
+              status.innerText = j.message || 'Error claiming reward.';
+              claimBtn.disabled = false;
+            }
+          }, delay);
+        } catch (err) {
+          console.error(err);
+          status.innerText = 'Error processing reward.';
+          claimBtn.disabled = false;
+        }
+      });
+    });
+  } catch (err) {
+    console.error('Failed to load videos', err);
+    container.innerHTML = '<p style="text-align:center;color:red;">Error loading videos.</p>';
+  }
+}
+
+loadVideos();
 </script>
-
 
 </body>
 </html>
