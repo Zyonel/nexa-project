@@ -244,6 +244,7 @@ CREATE TABLE IF NOT EXISTS task_logs (
 );*/
 
 // Insert transaction & wallet log as you already do
+/*
 await db.run(
   "INSERT INTO transactions (username, type, amount, balance_after, note, created_at) VALUES (?, ?, ?, ?, ?, ?)",
   [ref, "referral_bonus", reward, prevTotal + reward, `Referral bonus from ${username}`, Date.now()]
@@ -253,7 +254,7 @@ await db.run(
   "INSERT INTO wallet_logs (username, amount, type, description, change, reason, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
   [ref, reward, "credit", `Referral bonus for inviting ${username}`, reward, `referral:${username}`, Date.now()]
 );
-
+*/
 
 // Database file for articles
 const ARTICLES_DB = "./articles.json";
@@ -367,6 +368,7 @@ app.post("/api/signup", async (req, res) => {
           "SELECT username, total_balance, affiliate_balance, email FROM users WHERE LOWER(username) = LOWER(?)",
           [ref]
         );
+console.log("refUser", refUser);
 
         if (refUser) {
           const prevTotal = Number(refUser.total_balance || 0);

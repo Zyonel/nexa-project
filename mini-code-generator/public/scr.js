@@ -120,7 +120,7 @@ async function cleanup() {
 // 💸 Withdrawals Management
 async function loadWithdrawals(status = "") {
   try {
-    const url = status ? `https://nexa-project-l5pg.onrender.com/api/admin/withdrawals?status=${status}` : "https://nexa-project-l5pg.onrender.com/api/admin/withdrawals";
+    const url = status ? `/api/admin/withdrawals?status=${status}` : "/api/admin/withdrawals";
     const res = await fetch(url, { headers: { "x-admin-pass": ADMIN_PASS } });
     const payload = await res.json();
 
