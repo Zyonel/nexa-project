@@ -42,7 +42,8 @@ const app = express();
 const allowedOrigins = [
   "https://nexa-project-mj8u.vercel.app",
   "https://nexa-project-vctq.vercel.app", 
-  "https://nexxa.vercel.app" // add your second frontend here
+  "https://nexxa.vercel.app",
+  "https://nexanet.vercel.app" // add your second frontend here
 ];
 
 app.use(cors({
