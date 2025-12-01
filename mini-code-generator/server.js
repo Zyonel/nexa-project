@@ -426,7 +426,14 @@ app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) return res.json({ success: false, message: "Missing credentials" });
 
-  const user = await db.get("SELECT * FROM users WHERE username = ?", [username]);
+  const cleanUsername = username.trim();
+
+  /*const user = await db.get("SELECT * FROM users WHERE username = ?", [username]);*/
+  const user = await db.get(
+  "SELECT * FROM users WHERE LOWER(username) = LOWER(?)",
+  [username.trim()]
+);
+
   if (!user) return res.json({ success: false, message: "User not found" });
 
   const valid = await bcrypt.compare(password, user.password);
