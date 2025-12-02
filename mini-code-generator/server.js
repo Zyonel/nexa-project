@@ -421,15 +421,15 @@ console.log("refUser", refUser);
     }
   }
 });
-
+/*
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) return res.json({ success: false, message: "Missing credentials" });
 
   const cleanUsername = username.trim();
-
+*/
   /*const user = await db.get("SELECT * FROM users WHERE username = ?", [username]);*/
-  const user = await db.get(
+ /* const user = await db.get(
   "SELECT * FROM users WHERE LOWER(username) = LOWER(?)",
   [username.trim()]
 );
@@ -453,6 +453,73 @@ app.post("/api/login", async (req, res) => {
     bonus_balance: user.bonus_balance || 0
     },
   });
+});
+*/
+
+app.post("/api/login", async (req, res) => {
+  try {
+    console.log("LOGIN attempt body:", req.body);
+    const rawIdentifier = req.body.username || req.body.email || ""; // accept either
+    const password = req.body.password;
+
+    if (!rawIdentifier || !password) {
+      console.log("Missing credentials:", { rawIdentifier, hasPassword: !!password });
+      return res.json({ success: false, message: "Missing credentials" });
+    }
+
+    const identifier = String(rawIdentifier).trim();
+
+    // 1) try case-insensitive username match
+    let user = await db.get(
+      "SELECT * FROM users WHERE LOWER(username) = LOWER(?)",
+      [identifier]
+    );
+    if (!user) {
+      // 2) try case-insensitive email match
+      user = await db.get(
+        "SELECT * FROM users WHERE LOWER(email) = LOWER(?)",
+        [identifier]
+      );
+    }
+
+    // 3) debugging fallback: small fuzzy search to show possible matches (logs only)
+    if (!user) {
+      const likePattern = `%${identifier.replace(/%/g, '')}%`;
+      const candidates = await db.all(
+        "SELECT id, username, email FROM users WHERE LOWER(username) LIKE LOWER(?) OR LOWER(email) LIKE LOWER(?) LIMIT 10",
+        [likePattern, likePattern]
+      );
+      console.log("Login lookup - no exact match. Fuzzy candidates:", candidates);
+      return res.json({ success: false, message: "User not found", debugCandidates: candidates });
+    }
+
+    // 4) verify password
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      console.log(`Invalid password for user id=${user.id} username=${user.username} email=${user.email}`);
+      return res.json({ success: false, message: "Invalid password" });
+    }
+
+    // 5) success
+    console.log(`Login success for username=${user.username} id=${user.id}`);
+    res.json({
+      success: true,
+      message: "Login successful",
+      user: {
+        id: user.id,
+        fullname: user.fullname,
+        username: user.username,
+        email: user.email,
+        country: user.country,
+        total_balance: user.total_balance || 0,
+        affiliate_balance: user.affiliate_balance || 0,
+        bonus_balance: user.bonus_balance || 0
+      },
+    });
+  } catch (err) {
+    console.error("Login route error:", err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
 });
 
 app.post("/api/user/edit", upload.single("profile_pic"), async (req, res) => {
